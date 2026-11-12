@@ -23,7 +23,7 @@ constexpr int M_B_IN2 = 18;
 // ---------- Параметры ШИМ ----------
 constexpr uint32_t PWM_FREQ = 20000;  // 20 кГц
 constexpr uint8_t  PWM_BITS = 8;      // 0..255
-constexpr int      MIN_DUTY = 90;     // порог страгивания TT-мотора
+constexpr int      MIN_DUTY = 150;     // порог страгивания TT-мотора
 
 // ---------- Безопасность ----------
 // Если от телефона нет ни одного запроса дольше этого времени - моторы глушатся.
@@ -104,7 +104,8 @@ private:
       return;
     }
     int duty = map(abs(speed), 1, 100, MIN_DUTY, 255);
-    duty = constrain(duty * trim / 100, 0, 255);   // поправка скорости
+    //duty = constrain(duty * trim / 100, 0, 255);   // поправка скорости
+    duty = constrain(duty * trim / 100, MIN_DUTY, 255);
 
     if (speed > 0) {
       ledcWrite(in1, duty);
