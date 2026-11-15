@@ -334,7 +334,9 @@ function hold(id, ka, kb){
   el.addEventListener('pointerup', stop);
   el.addEventListener('pointercancel', stop);
 }
-hold('bF', 1, 1); hold('bB', -1, -1); hold('bL', -1, 1); hold('bR', 1, -1);
+hold('bF', 1, 1); hold('bB', -1, -1);
+//hold('bL', -1, 1); hold('bR', 1, -1);
+hold('bL', 1, -1); hold('bR', -1, 1);
 $('bS').addEventListener('click', () => api('stop'));
 
 // --- индивидуальные ползунки (с ограничением частоты запросов)
